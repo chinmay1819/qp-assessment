@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GroceryItem } from './grocery.entity';
 import { AuthMiddleware } from 'src/auth/auth.middleware';
 import { AuthService } from 'src/auth/auth.service';
+import { User } from 'src/auth/user.entity';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { AuthService } from 'src/auth/auth.service';
       secret: 'secret_key_by_org',
       signOptions: { expiresIn: '1h' },
     }),
-    TypeOrmModule.forFeature([GroceryItem]),
+    TypeOrmModule.forFeature([GroceryItem, User]),
   ],
   controllers: [GroceryController],
   providers: [GroceryService, AuthService],
