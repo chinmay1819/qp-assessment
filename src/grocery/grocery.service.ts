@@ -9,6 +9,7 @@ import { Repository, MoreThan } from 'typeorm';
 import { CreateGroceryDto } from './dto/create-grocery.dto';
 import { UpdateGroceryDto } from './dto/update-grocery.dto';
 import { BookItemsDto } from './dto/book-items.dto';
+import { CustomMessages } from 'src/shared/const/custom-messages';
 
 @Injectable()
 export class GroceryService {
@@ -31,7 +32,7 @@ export class GroceryService {
       where: { itemId },
     });
     if (!groceryItem) {
-      throw new NotFoundException('Item does not exist');
+      throw new NotFoundException(CustomMessages.GROCERY_NOT_FOUND);
     }
     await this.groceryItemsRepository.delete({ itemId });
     return `Item with id ${itemId} has been deleted`;
@@ -45,7 +46,7 @@ export class GroceryService {
       where: { itemId },
     });
     if (!groceryItem) {
-      throw new NotFoundException('Item does not exist');
+      throw new NotFoundException(CustomMessages.GROCERY_NOT_FOUND);
     }
     Object.assign(groceryItem, updateGroceryDto);
     await this.groceryItemsRepository.update(itemId, updateGroceryDto);
@@ -66,14 +67,10 @@ export class GroceryService {
         where: { itemId: item.itemId },
       });
       if (!groceryItem) {
-        throw new NotFoundException(
-          `Item with id ${item.itemId} does not exist`,
-        );
+        throw new NotFoundException(CustomMessages.GROCERY_NOT_FOUND);
       }
       if (groceryItem.quantity < item.quantity) {
-        throw new BadRequestException(
-          `Insufficient quantity for item with id ${item.itemId}`,
-        );
+        throw new BadRequestException(CustomMessages.ITEMS_NOT_AVAILABLE);
       }
       groceryItem.quantity -= item.quantity;
       await this.groceryItemsRepository.save(groceryItem);

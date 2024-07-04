@@ -1,8 +1,6 @@
 export class CustomMessages {
   static GROCERY_NOT_FOUND = 'Grocery not found';
 
-  static DATA_NOT_PRESENT = 'Data not present';
-
   static INCORRECT_CREDENTIALS = 'Incorrect credentials';
 
   static CREATED = 'Created successfully';
@@ -12,8 +10,6 @@ export class CustomMessages {
   static UPDATED = 'Updated successfully';
 
   static FOUND = 'Found';
-
-  static FILES_UPLOADED_SUCCESSFULLY = 'Files have been uploaded successfully';
 
   static ACCEPTED = 'Accepted';
 
@@ -26,7 +22,13 @@ export class CustomMessages {
   static SUCCESS = 'Success';
 
   static ITEMS_NOT_AVAILABLE =
-    'Items not available plz check available item list';
+    'Items not available please check available item list';
 
   static ORDER_BOOK_DONE = 'order booking done';
+
+  static USER_CREATED = 'User created successfully';
+
+  static USER_NOT_FOUND = 'User not found';
+
+  static LOGIN_SUCCESS = 'Logged In successfully';
 }
